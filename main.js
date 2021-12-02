@@ -7,18 +7,23 @@ const FULL_HEART = '♥'
 const div = document.getElementById('modal')
 
 addEventListener('click', function(event) {
-  console.log(event.target.classList)
-
+ 
   mimicServerCall()
   .then(function (response) {
     console.log(response);
-    event.target.classList.add("activated-heart");
+    if(event.target.classList[1] === 'activated-heart') {
+      event.target.classList.remove("activated-heart")
+    }
+    else {
+      event.target.classList.add("activated-heart")
+    };
   })
   .catch(() => {
     div.classList.remove('hidden');
     setTimeout(() => div.classList.add('hidden'), 3000)
   })
 })
+
 
 // function liker(event) {
 //   if (event.target.classList[1] = 'activated-heart') {
